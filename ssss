@@ -1,0 +1,44 @@
+@startuml
+skinparam {
+  DiagramBorderColor black
+  DiagramBorderThickness 2
+  Shadowing false
+  ArrowColor black
+  ArrowThickness 2
+  UseBetterShading true
+}
+
+rectangle "海面 (Sea)" {
+  arrow from 0,20 to 40,0 : 風向 (Wind Direction)
+  skinparam {
+    ArrowColor #FF0000
+    ArrowThickness 3
+  }
+  arrow from 0,20 to 40,0
+  skinparam {
+    ArrowColor black
+    ArrowThickness 2
+  }
+
+  line from 40,40 to 0,60 : スタートライン (Start Line)
+
+  node "委員会艇 (Committee Boat)" as CB at 40,40
+  circle "マーク (Mark / Pin End)" as PIN at 0,60
+
+  rectangle "有利なエリア\n(Advantageous Area)" as FavoredArea at 35,45 {
+    CB -- FavoredArea
+  }
+  FavoredArea -[dotted]-> CB
+
+  node "あなたの艇\n(Your Boat)" as BOAT at 30,45
+
+  note right of CB
+    **上有利**
+    風が委員会艇側から
+    強く当たっている状態。
+    委員会艇側からスタートすると
+    有利な風上コースに
+    早く乗れる。
+  end note
+}
+@enduml
